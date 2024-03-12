@@ -33,7 +33,7 @@ public class SaidaResource {
         AtomicInteger count = new AtomicInteger();
         List<ItemEstocado> itemsRetornados = new ArrayList<>();
         items.forEach(item -> {
-            if (item.getDeposito().getId().equals(idDeposito) && item.getProduto().getId().equals(idProduto) && count.get() < qtd) {
+            if (item.getDeposito().getId().equals(idDeposito) && item.getProduto().getId().equals(idProduto) && count.get() < qtd && item.getSaida()== null) {
                 item.setSaida(LocalDateTime.now());
                 itemRepository.save(item);
                 itemsRetornados.add(item);

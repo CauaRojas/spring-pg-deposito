@@ -27,25 +27,22 @@ public class EntradaResource {
     @PostMapping(value = "/deposito/{idDeposito}/produto/{idProduto}")
     @Transactional
     public ResponseEntity<List<ItemEstocado>> persist(@RequestBody int qtd, @PathVariable(name = "idDeposito") Long idDeposito, @PathVariable(name = "idProduto") Long idProduto) {
+    // recebe um inteiro no corpo da requisição.
 
-        ItemEstocado itemEstocado = new ItemEstocado();
         var deposito = repoDepository.findById(idDeposito);
-
-        if (deposito.isEmpty()) return ResponseEntity.badRequest().build();
-        itemEstocado.setDeposito(deposito.get());
-
         var produto = repoProduto.findById(idProduto);
 
-        if(produto.isEmpty())return ResponseEntity.badRequest().build();
-        itemEstocado.setProduto(produto.get());
-
-        itemEstocado.setEntrada(LocalDateTime.now());
+        if (deposito.isEmpty() || produto.isEmpty()) return ResponseEntity.badRequest().build();
 
         List itensEstocados = new ArrayList<ItemEstocado>();
 
         for (int i = 0; i < qtd; i++){
-            var saved = repoItem.save(itemEstocado);
-            itensEstocados.add(saved);
+            ItemEstocado itemEstocado = new ItemEstocado();
+            itemEstocado.setDeposito(deposito.get());
+            itemEstocado.setProduto(produto.get());
+            itemEstocado.setEntrada(LocalDateTime.now());
+            itemEstocado.setNumeroDeSerie(UUID.randomUUID().toString());
+            itensEstocados.add(repoItem.save(itemEstocado));
         }
 
         return ResponseEntity.ok( itensEstocados );
