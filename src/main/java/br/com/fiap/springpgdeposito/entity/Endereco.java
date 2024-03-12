@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "TB_DEPOSITO_ENDERECO")
+@Table(name = "TB_DEP_ENDERECO")
 public class Endereco {
     @Id
     @Column(name = "ID_ENDERECO")
