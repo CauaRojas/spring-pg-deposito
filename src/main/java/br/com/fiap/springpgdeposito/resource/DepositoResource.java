@@ -1,8 +1,17 @@
 package br.com.fiap.springpgdeposito.resource;
 
+import br.com.fiap.springpgdeposito.entity.Deposito;
 import br.com.fiap.springpgdeposito.repository.DepositoRepository;
 import br.com.fiap.springpgdeposito.repository.EnderecoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import java.net.URI;
+import java.util.List;
+import java.util.Objects;
 
 @RestController
 @RequestMapping(value = "/deposito")
@@ -39,7 +48,7 @@ public class DepositoResource {
 
             //Se não encontrou o endereco com o id informado então foi uma requisição maliciosa
             if (endereco.isEmpty()) return ResponseEntity.badRequest().build();
-            objeto.setAdvogado(endereco.get());
+            objeto.setEndereco(endereco.get());
         }
 
 
