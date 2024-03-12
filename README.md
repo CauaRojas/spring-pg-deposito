@@ -11,7 +11,6 @@ CP I - **Java Advanced** aplicado em 12/03/2024.
 
 # Sumário
 
-
 [Estudo de caso ](#_Estudo_de_caso)
 
 [O que deverá ser feito? ](#_O_que_devera_ser_feito)
