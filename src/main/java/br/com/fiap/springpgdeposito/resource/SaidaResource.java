@@ -33,12 +33,16 @@ public class SaidaResource {
         AtomicInteger count = new AtomicInteger();
         List<ItemEstocado> itemsRetornados = new ArrayList<>();
         items.forEach(item -> {
-            if (item.getDeposito().getId().equals(idDeposito) && item.getProduto().getId().equals(idProduto) && count.get() < qtd) {
+            if (item.getDeposito().getId().equals(idDeposito) // Item pertence ao deposito
+                    && item.getProduto().getId().equals(idProduto) // Item é do produto
+                    && count.get() < qtd // Ainda não atingiu a quantidade solicitada
+                    &&  item.getSaida() == null){ // Item ainda não foi retirado
                 item.setSaida(LocalDateTime.now());
-                itemRepository.save(item);
                 itemsRetornados.add(item);
                 count.addAndGet(1);
             }
         });
+        if (count.get() < qtd) return ResponseEntity.badRequest().build(); // Não tem a quantidade solicitada
+        itemRepository.saveAll(itemsRetornados);
         return ResponseEntity.ok().body(itemsRetornados);
     }}
