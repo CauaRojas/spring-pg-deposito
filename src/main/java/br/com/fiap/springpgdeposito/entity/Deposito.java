@@ -14,6 +14,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "TB_DEP_DEPOSITO")
 public class Deposito {
     @Id
+    @Column(name = "ID_DEPOSITO")
     @GeneratedValue(strategy = jakarta.persistence.GenerationType.SEQUENCE, generator = "SQ_DEPOSITO")
     @SequenceGenerator(name = "SQ_DEPOSITO", sequenceName = "SQ_DEPOSITO", allocationSize = 1)
     private Long id;

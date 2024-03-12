@@ -16,6 +16,7 @@ import java.math.BigDecimal;
 @Table(name = "TB_DEP_PRODUTO")
 public class Produto {
     @Id
+    @Column(name = "ID_PRODUTO")
     @GeneratedValue(strategy = jakarta.persistence.GenerationType.SEQUENCE, generator = "SQ_PRODUTO")
     @SequenceGenerator(name = "SQ_PRODUTO", sequenceName = "SQ_PRODUTO", allocationSize = 1)
     private Long id;

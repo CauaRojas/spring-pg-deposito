@@ -16,6 +16,7 @@ import java.time.LocalDateTime;
 @Table(name = "TB_DEP_ITEM_ESTOCADO")
 public class ItemEstocado {
     @Id
+    @Column(name = "ID_ITEM_ESTOCADO")
     @GeneratedValue(strategy = jakarta.persistence.GenerationType.SEQUENCE, generator = "SQ_ITEM_ESTOCADO")
     @SequenceGenerator(name = "SQ_ITEM_ESTOCADO", sequenceName = "SQ_ITEM_ESTOCADO", allocationSize = 1)
     private Long id;
