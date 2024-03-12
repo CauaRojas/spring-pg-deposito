@@ -44,7 +44,6 @@ public class EntradaResource {
         List itensEstocados = new ArrayList<ItemEstocado>();
 
         for (int i = 0; i < qtd; i++){
-            itemEstocado.setNumeroDeSerie(UUID.randomUUID().toString());
             var saved = repoItem.save(itemEstocado);
             itensEstocados.add(saved);
         }
