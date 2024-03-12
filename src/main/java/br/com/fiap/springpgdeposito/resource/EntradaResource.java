@@ -34,7 +34,7 @@ public class EntradaResource {
 
         if (deposito.isEmpty() || produto.isEmpty()) return ResponseEntity.badRequest().build();
 
-        List itensEstocados = new ArrayList<ItemEstocado>();
+        List<ItemEstocado> itensEstocados = new ArrayList<>();
 
         for (int i = 0; i < qtd; i++){
             ItemEstocado itemEstocado = new ItemEstocado();
@@ -42,8 +42,8 @@ public class EntradaResource {
             itemEstocado.setProduto(produto.get());
             itemEstocado.setEntrada(LocalDateTime.now());
             itemEstocado.setNumeroDeSerie(UUID.randomUUID().toString());
-            itensEstocados.add(repoItem.save(itemEstocado));
         }
+        repoItem.saveAll(itensEstocados);
 
         return ResponseEntity.ok( itensEstocados );
     }
