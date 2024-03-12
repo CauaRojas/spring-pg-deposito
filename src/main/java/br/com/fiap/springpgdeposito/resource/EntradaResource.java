@@ -42,6 +42,7 @@ public class EntradaResource {
             itemEstocado.setProduto(produto.get());
             itemEstocado.setEntrada(LocalDateTime.now());
             itemEstocado.setNumeroDeSerie(UUID.randomUUID().toString());
+            itensEstocados.add(itemEstocado);
         }
         repoItem.saveAll(itensEstocados);
 
