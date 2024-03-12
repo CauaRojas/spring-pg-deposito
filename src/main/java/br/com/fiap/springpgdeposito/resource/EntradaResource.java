@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping(value = "/entrada")
@@ -43,6 +44,7 @@ public class EntradaResource {
         List itensEstocados = new ArrayList<ItemEstocado>();
 
         for (int i = 0; i < qtd; i++){
+            itemEstocado.setNumeroDeSerie(UUID.randomUUID().toString());
             var saved = repoItem.save(itemEstocado);
             itensEstocados.add(saved);
         }
